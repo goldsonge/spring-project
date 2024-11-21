@@ -1,0 +1,37 @@
+version: "3.9"
+networks:
+  spring-demo-project_default:
+    driver: bridge
+
+services:
+  database-mysql8:
+    image: mysql:8.0.36
+    container_name: database-mysql8
+    environment:
+      MYSQL_DATABASE: database-mysql8
+      MYSQL_ROOT_PASSWORD: 1234
+      TZ: Asia/Seoul
+    ports:
+      - 11802:3306
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+    networks:
+      - spring-demo-project_default
+
+#  spring-app:
+#    image: deploy-was:latest
+#    restart: always
+#    depends_on:
+#      - database-mysql8
+#    ports:
+#      - 8082:8080
+#    container_name: app-dev-deploy
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://database-mysql8:3306/database-mysql8
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: 1234
+##    volumes:
+##      - ./volumes/storage/upload:/app/storage/upload
+##      - ./volumes/log:/app/log
+#    networks:
+#      - spring-demo-project_default
