@@ -12,7 +12,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+  workflow_dispatch:  
+  
 env:
   S3_BUCKET_NAME: myee-bucket
   AWS_REGION: ap-northeast-2
